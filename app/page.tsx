@@ -1,8 +1,24 @@
-import { Button } from '@/components/ui/button'
-import MainMenuPage from './(main-menu)/page'
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function Home() {
   return (
-      <MainMenuPage/>
+    <div className="flex flex-col items-center justify-center bg-green-900 h-full">
+        <h1 className="font-bold text-[40px] absolute top-56">Golf Solitaire</h1>
+
+        <Button className="text-green-800 font-bold text-xl absolute top-80 px-[60px]">
+            <Link href="/solo">
+                Igraj sam
+            </Link>      
+        </Button>
+
+        <Button className="text-green-800 font-bold text-xl absolute top-[42%]">
+            Igraj s prijateljima
+        </Button>
+
+        <Button className="text-green-800 font-bold text-xl absolute top-[50%] px-[47px]">
+            Highscores
+        </Button>
+    </div>
   )
 }
