@@ -6,25 +6,30 @@ import { useState } from "react";
 
 
 interface KartaProps{
+    id: number;
     className: string;
     value: number;
     shape: string;
     hidden: boolean;
     disabled: boolean;
+    handlePress: (id: number)=> void;
 }
 
 export const KartaKomponenta = ({
+    id,
     className,
     value,
     hidden,
     disabled,
-    shape
+    shape,
+    handlePress,
 }:KartaProps) =>{
 
     const [ isClicked, setIsClicked ] = useState(hidden);
 
     const handleClick = () =>{
         if(disabled==true) return;
+        handlePress(id);
         setIsClicked(true);
     }
 
@@ -37,13 +42,13 @@ export const KartaKomponenta = ({
                     <>
                         {
                             shape === "heart" &&
-                            <Heart className="h-3 w-3 absolute top-1 right-1" fill="100"/> ||
+                            <Heart className="h-3 w-3 absolute top-1 right-1 text-red-500"/> ||
                             shape === "spade" &&
-                            <Spade className="h-3 w-3 absolute top-1 right-1" fill="100"/> ||
+                            <Spade className="h-3 w-3 absolute top-1 right-1" /> ||
                             shape === "diamond" &&
-                            <Diamond className="h-3 w-3 absolute top-1 right-1" fill="100"/> ||
+                            <Diamond className="h-3 w-3 absolute top-1 right-1 text-red-500" /> ||
                             shape === "club" &&
-                            <Club className="h-3 w-3 absolute top-1 right-1" fill="100"/>
+                            <Club className="h-3 w-3 absolute top-1 right-1" />
                         }
                         
                         {value>10 && value<12 ? "J" : value>11 && value<13 ? "Q" : value>12 || value>10? "K": value}

@@ -58,6 +58,15 @@ const Spil: Karta[] = [
     { value: 13, shape: "spade"},
 ]
 
+let currentIndex = Spil.length, randomIndex;
+
+        while(currentIndex>0){
+            randomIndex = Math.floor(Math.random() * currentIndex );
+
+            currentIndex--;
+
+            [Spil[currentIndex], Spil[randomIndex]] = [ Spil[randomIndex], Spil[currentIndex]];
+        }
 
 export default Spil;
 
