@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center bg-green-900 h-full">
-        <h1 className="font-bold text-[40px] absolute top-56">Golf Solitaire</h1>
+        <h1 className="font-bold text-[40px] absolute top-[25%]">Golf Solitaire</h1>
 
         <Button className="text-green-800 font-bold text-xl absolute top-[38%] px-[60px]">
             <Link href="/solo">
