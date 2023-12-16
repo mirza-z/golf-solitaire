@@ -73,7 +73,7 @@ export const Level1 = ({}) =>{
             <div className="h-[75%] bg-green-400 ">
               {
                 lvl1.map((lvl)=>(
-                    <KartaKomponenta id={lvl.id} value={lvl.value} shape={lvl.shape} className={lvl.className} hidden={lvl.hidden} disabled={lvl.disabled} handlePress={handlePress}/>
+                    <KartaKomponenta key={lvl.id} id={lvl.id} value={lvl.value} shape={lvl.shape} className={lvl.className} hidden={lvl.hidden} disabled={lvl.disabled} handlePress={handlePress}/>
                 ))
               }       
             </div>
