@@ -2,7 +2,7 @@
 
 export const Tabla = () =>{
     return(
-        <div className="w-full bg-green-500 h-1/3">
+        <div className="w-full bg-green-800 h-1/4">
             
         </div>
     )

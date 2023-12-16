@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { Club, Diamond, Heart, Spade } from "lucide-react";
+import { useState } from "react";
 
 
 interface KartaProps{
@@ -12,7 +13,7 @@ interface KartaProps{
     disabled: boolean;
 }
 
-export const Karta = ({
+export const KartaKomponenta = ({
     className,
     value,
     hidden,
@@ -20,13 +21,15 @@ export const Karta = ({
     shape
 }:KartaProps) =>{
 
+    const [ isClicked, setIsClicked ] = useState(hidden);
+
     const handleClick = () =>{
-        if(disabled) return;
-        console.log("hi " + value);
+        if(disabled==true) return;
+        setIsClicked(true);
     }
 
     return(
-        <div onClick={handleClick} hidden={hidden} className={className}>
+        <div onClick={handleClick} hidden={isClicked} className={className}>
             <div className={cn("bg-white border-2 border-black h-14 w-10 rounded-sm text-center flex justify-center items-center font-extrabold text-[20px]", 
                         disabled && "bg-[url('../public/cards.png')] bg-contain bg-no-repeat bg-center")}>
                 {   
