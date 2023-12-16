@@ -22,7 +22,7 @@ export const Tabla = ({
         <div className="w-full bg-green-800 h-1/4 flex items-center justify-center">
                 {
                     karte.map((karta) =>(
-                             <KartaKomponenta id={-1} value={karta.value} shape={karta.shape} className="absolute" disabled={false} hidden={false} handlePress={handlePress}/>
+                             <KartaKomponenta key={1} id={-1} value={karta.value} shape={karta.shape} className="absolute" disabled={false} hidden={false} handlePress={handlePress}/>
                     ))
                   
                 }
