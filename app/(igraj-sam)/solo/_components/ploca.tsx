@@ -1,3 +1,4 @@
+"use client"
 
 import Spil from "@/cardData"
 import { Level1 } from "./level-1"
