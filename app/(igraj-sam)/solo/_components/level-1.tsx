@@ -18,6 +18,8 @@ export const Level1 = ({
     const [ lvl1, setLvl ] = useState(updateLvl);
     const [ karteNaTabli, setKarteNaTabli] = useState(spil.slice(30,52));
     const [ trenutnaKartaNaTabli, setTrenutnaKartaNaTabli] = useState(karteNaTabli[karteNaTabli.length-1].value);
+    const [ score, setScore ] = useState(0);
+    const [ combo, setCombo ] = useState(1);
 
     useEffect(() => {
       
@@ -39,8 +41,8 @@ export const Level1 = ({
         setKarteNaTabli(trenutniSpil);
         
         setTrenutnaKartaNaTabli(karteNaTabli[karteNaTabli.length-1].value);
-        console.log(trenutnaKartaNaTabli);
-
+        setScore(score + combo*4400);
+        setCombo(combo+1);
 
         updateLvl[id].hidden = true;
         if(id===0){
@@ -164,9 +166,8 @@ export const Level1 = ({
 
     const handleKarteNaTabli = (trenutneKarte: Karta[]) =>{
         setKarteNaTabli(trenutneKarte);
-        
+        setCombo(1);
         setTrenutnaKartaNaTabli(karteNaTabli[karteNaTabli.length-1].value);
-        console.log(trenutnaKartaNaTabli);
     }
 
     return(
@@ -180,7 +181,7 @@ export const Level1 = ({
                 )
               }       
             </div>
-            <Tabla karte={karteNaTabli} handleKarteNaTabli={handleKarteNaTabli}/>
+            <Tabla karte={karteNaTabli} handleKarteNaTabli={handleKarteNaTabli} score={score}/>
         </div>
     )
 }

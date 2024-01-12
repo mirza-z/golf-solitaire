@@ -7,11 +7,13 @@ import { useState } from "react";
 interface TablaProps{
     karte: Karta[];
     handleKarteNaTabli: (karta: Karta[])=>void;
+    score: number;
 }
 
 export const Tabla = ({
     karte,
-    handleKarteNaTabli
+    handleKarteNaTabli,
+    score
 }:TablaProps) =>{
 
     const [ num, setNum ] = useState(1);
@@ -35,6 +37,9 @@ export const Tabla = ({
                     ))
                   
                 }
+            <div className="absolute top-[93%] left-[10%] text-[20px] font-bold">
+                <h1>Score: {score}</h1>
+            </div>
         </div>
     )
    
