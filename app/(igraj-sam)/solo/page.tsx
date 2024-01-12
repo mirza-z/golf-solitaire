@@ -1,10 +1,16 @@
+"use client";
 
 import Spil from "@/cardData"
 import { Level1 } from "./_components/level-1" 
 import { Level } from "@/types"
+import { useEffect, useState } from "react";
 
 const IgrajSam = () =>{
-    let spil = Spil
+    const [ spil, setSpil ] = useState(Spil);
+
+    useEffect(() =>{
+        setSpil(Spil);
+    }, [spil])
 
     const karte=  spil.slice(0, 30);
 

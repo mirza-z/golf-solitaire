@@ -60,13 +60,13 @@ const Spil: Karta[] = [
 
 let currentIndex = Spil.length, randomIndex;
 
-        while(currentIndex>0){
-            randomIndex = Math.floor(Math.random() * currentIndex );
+while(currentIndex>0){
+    randomIndex = Math.floor(Math.random() * currentIndex );
 
-            currentIndex--;
+    currentIndex--;
 
-            [Spil[currentIndex], Spil[randomIndex]] = [ Spil[randomIndex], Spil[currentIndex]];
-        }
+    [Spil[currentIndex], Spil[randomIndex]] = [ Spil[randomIndex], Spil[currentIndex]];
+}
 
 export default Spil;
 
