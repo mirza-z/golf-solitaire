@@ -3,7 +3,7 @@ import Spil from "@/cardData"
 import { Level1 } from "./_components/level-1" 
 import { Level } from "@/types"
 
-export const IgrajSam = () =>{
+const IgrajSam = () =>{
     let spil = Spil
 
     const karte=  spil.slice(0, 30);
