@@ -25,16 +25,14 @@ export const KartaKomponenta = ({
     handlePress,
 }:KartaProps) =>{
 
-    const [ isClicked, setIsClicked ] = useState(hidden);
-
     const handleClick = () =>{
         if(disabled==true) return;
         handlePress(id);
-        setIsClicked(true);
+
     }
 
     return(
-        <div onClick={handleClick} hidden={isClicked} className={className}>
+        <div onClick={handleClick} hidden={hidden} className={className}>
             <div className={cn("bg-white border-2 border-black h-14 w-10 rounded-sm text-center flex justify-center items-center font-extrabold text-[20px]", 
                         disabled && "bg-[url('../public/cards.png')] bg-contain bg-no-repeat bg-center")}>
                 {   

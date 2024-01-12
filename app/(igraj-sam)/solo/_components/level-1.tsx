@@ -3,81 +3,184 @@
 import { KartaKomponenta } from "./karta"
 import { Karta, Level } from "@/types";
 import { Tabla } from "./tabla";
-import Spil from "@/cardData";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
+interface Level1Props{
+    updateLvl: Level[];
+    spil: Karta[];
+}
 
-export const Level1 = ({}) =>{
-    let spil = Spil
-
-    const karte=  spil.slice(0, 30);
-
-    let updateLvl: Level[] = [
-        { id: 1, value: karte[0].value, shape: karte[0].shape, className: "absolute top-[150px] left-[calc(50%-24px)] z-[10]", hidden: false, disabled: false },
-        { id: 2, value: karte[1].value, shape: karte[1].shape, className: "absolute top-[165px] left-[calc(50%-48px)] z-[8]", hidden: false, disabled: true },
-        { id: 3, value: karte[2].value, shape: karte[2].shape, className: "absolute top-[165px] left-[calc(50%-0px)] z-[8]", hidden: false, disabled: true},
-        { id: 4, value: karte[3].value, shape: karte[3].shape, className: "absolute top-[180px] left-[calc(50%-72px)] z-[6]", hidden: false, disabled: true},
-        { id: 5, value: karte[4].value, shape: karte[4].shape, className: "absolute top-[180px] left-[calc(50%-24px)] z-[6]", hidden: false, disabled: true },
-        { id: 6, value: karte[5].value, shape: karte[5].shape, className: "absolute top-[180px] left-[calc(50%+24px)] z-[6]", hidden: false, disabled: true},
-        { id: 7, value: karte[6].value, shape: karte[6].shape, className: "absolute top-[195px] left-[calc(50%-96px)] z-[4]", hidden: false, disabled: true},
-        { id: 8, value: karte[7].value, shape: karte[7].shape, className: "absolute top-[195px] left-[calc(50%-48px)] z-[4]", hidden: false, disabled: true},
-        { id: 9, value: karte[8].value, shape: karte[8].shape, className: "absolute top-[195px] left-[calc(50%-0px)] z-[4]", hidden: false, disabled: true},
-        { id: 10, value: karte[9].value, shape: karte[9].shape, className: "absolute top-[195px] left-[calc(50%+48px)] z-[4]", hidden: false,  disabled: true},
-    
-        { id: 11, value: karte[10].value, shape: karte[10].shape, className: "absolute top-[275px] left-[calc(26%-28px)] z-[4]", hidden:false, disabled:true},
-        { id: 12, value: karte[11].value, shape: karte[11].shape, className:"absolute top-[290px] left-[calc(26%-48px)] z-[6]", hidden: false, disabled: true},
-        { id: 13, value: karte[12].value, shape: karte[12].shape, className:"absolute top-[290px] left-[calc(26%-0px)] z-[6]", hidden: false, disabled: true},
-        { id: 14, value: karte[13].value, shape: karte[13].shape, className:"absolute top-[305px] left-[calc(26%-72px)] z-[8]", hidden: false, disabled: true},
-        { id: 15, value: karte[14].value, shape: karte[14].shape, className:"absolute top-[305px] left-[calc(26%-24px)] z-[8]", hidden: false, disabled: true},
-        { id: 16, value: karte[15].value, shape: karte[15].shape, className:"absolute top-[305px] left-[calc(26%+24px)] z-[8]", hidden: false, disabled: true},
-        { id: 17, value: karte[16].value, shape: karte[16].shape, className:"absolute top-[320px] left-[calc(26%-96px)] z-[10]", hidden: false, disabled: false},
-        { id: 18, value: karte[17].value, shape: karte[17].shape, className:"absolute top-[320px] left-[calc(26%-48px)] z-[10]", hidden: false, disabled: false},
-        { id: 19, value: karte[18].value, shape: karte[18].shape, className:"absolute top-[320px] left-[calc(26%-0px)] z-[10]", hidden: false, disabled: false},
-        { id: 20, value: karte[19].value, shape: karte[19].shape, className:"absolute top-[320px] left-[calc(26%+48px)] z-[10]", hidden: false, disabled: false},
-    
-        { id: 21, value: karte[20].value, shape: karte[20].shape, className: "absolute top-[275px] left-[calc(76%-24px)] z-[4]", hidden: false, disabled: true},
-        { id: 22, value: karte[24].value, shape: karte[21].shape, className: "absolute top-[290px] left-[calc(76%-48px)] z-[6]", hidden: false, disabled: true},
-        { id: 23, value: karte[22].value, shape: karte[22].shape, className: "absolute top-[290px] left-[calc(76%-0px)] z-[6]", hidden: false, disabled: true},
-        { id: 24, value: karte[23].value, shape: karte[23].shape, className: "absolute top-[305px] left-[calc(76%-72px)] z-[8]", hidden: false, disabled: true},
-        { id: 25, value: karte[24].value, shape: karte[24].shape, className: "absolute top-[305px] left-[calc(76%-24px)] z-[8]", hidden: false, disabled: true},
-        { id: 26, value: karte[25].value, shape: karte[25].shape, className: "absolute top-[305px] left-[calc(76%+24px)] z-[8]", hidden: false, disabled: true},
-        { id: 27, value: karte[26].value, shape: karte[26].shape, className: "absolute top-[320px] left-[calc(76%-96px)] z-[10]", hidden: false, disabled: false},
-        { id: 28, value: karte[27].value, shape: karte[27].shape, className: "absolute top-[320px] left-[calc(76%-48px)] z-[10]", hidden: false, disabled: false},
-        { id: 29, value: karte[28].value, shape: karte[28].shape, className: "absolute top-[320px] left-[calc(76%-0px)] z-[10]", hidden: false, disabled: false},
-        { id: 30, value: karte[29].value, shape: karte[29].shape, className: "absolute top-[320px] left-[calc(76%+48px)] z-[10]", hidden: false, disabled: false},
-    ];
+export const Level1 = ({
+    updateLvl,
+    spil
+}:Level1Props) =>{
     
     const [ lvl1, setLvl ] = useState(updateLvl);
+    const [ karteNaTabli, setKarteNaTabli] = useState(spil.slice(30,52));
+    const [ trenutnaKartaNaTabli, setTrenutnaKartaNaTabli] = useState(karteNaTabli[karteNaTabli.length-1].value);
+
+    useEffect(() => {
+      
+    }, [])
     
-    const karteNaTabli = spil.slice(30,52);
+    
 
     const handlePress = (id:number) =>{
-        const updatedLevel = lvl1;
-        if(id === 1 ){
-            updatedLevel[1].hidden = false;
-            updatedLevel[1].disabled = false;
+        if((trenutnaKartaNaTabli+1 != updateLvl[id].value && trenutnaKartaNaTabli-1 != updateLvl[id].value) && 
+            !( trenutnaKartaNaTabli==1 && updateLvl[id].value==13) && !( trenutnaKartaNaTabli==13 && updateLvl[id].value==1))
+            
+            { return; }
 
-            updatedLevel[2].hidden = false;
-            updatedLevel[2].disabled = false;
-            setLvl(updatedLevel);
-        } 
-        else if(id === 2){
-            updatedLevel[3].hidden = false;
-            updatedLevel[3].disabled = false;
+        
+        const trenutniSpil = karteNaTabli;
+        trenutniSpil.pop();
+        const karta = { value: updateLvl[id].value, shape: updateLvl[id].shape};
+        trenutniSpil.push(karta);
+        setKarteNaTabli(trenutniSpil);
+        
+        setTrenutnaKartaNaTabli(karteNaTabli[karteNaTabli.length-1].value);
+        console.log(trenutnaKartaNaTabli);
 
+
+        updateLvl[id].hidden = true;
+        if(id===0){
+            updateLvl[1].disabled = false;
+            updateLvl[2].disabled = false;
         }
+        else if(id===1){
+            updateLvl[3].disabled = false;
+            if(lvl1[2].hidden === true)
+                updateLvl[4].disabled = false;
+        }
+        else if(id===2){
+            updateLvl[5].disabled = false;
+            if(lvl1[1].hidden === true)
+                updateLvl[4].disabled = false;
+        }
+        else if(id===3){
+            updateLvl[6].disabled = false;
+            if(lvl1[4].hidden === true)
+                updateLvl[7].disabled = false;
+        }
+        else if(id===4){
+            if(lvl1[3].hidden === true)
+                updateLvl[7].disabled = false;
+            if(lvl1[5].hidden === true)
+                updateLvl[8].disabled = false;
+        }
+        else if(id===5){
+            updateLvl[9].disabled = false;
+            if(lvl1[4].hidden === true)
+                updateLvl[8].disabled = false;
+        }
+
+        else if(id===16){
+            if(lvl1[17].hidden === true)
+                updateLvl[13].disabled = false;
+        }
+        else if(id===17){
+            if(lvl1[16].hidden === true)
+                updateLvl[13].disabled = false;
+            if(lvl1[18].hidden === true)
+                updateLvl[14].disabled = false;
+        }
+        else if(id===18){
+            if(lvl1[17].hidden === true)
+                updateLvl[14].disabled = false;
+            if(lvl1[19].hidden === true)
+                updateLvl[15].disabled = false;
+        }
+        else if(id===19){
+            if(lvl1[18].hidden === true)
+                updateLvl[15].disabled = false;
+        }
+        else if(id===13){
+            if(lvl1[14].hidden === true)
+                updateLvl[11].disabled = false;
+        }
+        else if(id===14){
+            if(lvl1[13].hidden === true)
+                updateLvl[11].disabled = false;
+            if(lvl1[15].hidden === true)
+                updateLvl[12].disabled = false;
+        }
+        else if(id===15){
+            if(lvl1[14].hidden === true)
+                updateLvl[12].disabled = false;
+        }
+        else if(id===11){
+            if(lvl1[12].hidden === true)
+                updateLvl[10].disabled = false;
+        }
+        else if(id===12){
+            if(lvl1[11].hidden === true)
+                updateLvl[10].disabled = false;
+        }
+        else if(id===26){
+            if(lvl1[27].hidden === true)
+                updateLvl[23].disabled = false;
+        }
+        else if(id===27){
+            if(lvl1[26].hidden === true)
+                updateLvl[23].disabled = false;
+            if(lvl1[28].hidden === true)
+                updateLvl[24].disabled = false;
+        }
+        else if(id===28){
+            if(lvl1[27].hidden === true)
+                updateLvl[24].disabled = false;
+            if(lvl1[29].hidden === true)
+                updateLvl[25].disabled = false;
+        }
+        else if(id===29){
+            if(lvl1[28].hidden === true)
+                updateLvl[25].disabled = false;
+        }
+        else if(id===23){
+            if(lvl1[24].hidden === true)
+                updateLvl[21].disabled = false;
+        }
+        else if(id===24){
+            if(lvl1[23].hidden === true)
+                updateLvl[21].disabled = false;
+            if(lvl1[25].hidden === true)
+                updateLvl[22].disabled = false;
+        }
+        else if(id===25){
+            if(lvl1[24].hidden === true)
+                updateLvl[22].disabled = false;
+        }
+        else if(id===21){
+            if(lvl1[22].hidden === true)
+                updateLvl[20].disabled = false;
+        }
+        else if(id===22){
+            if(lvl1[21].hidden === true)
+                updateLvl[20].disabled = false;
+        }
+
+        setLvl([...updateLvl]);
+    }
+
+    const handleKarteNaTabli = (trenutneKarte: Karta[]) =>{
+        setKarteNaTabli(trenutneKarte);
+        
+        setTrenutnaKartaNaTabli(karteNaTabli[karteNaTabli.length-1].value);
+        console.log(trenutnaKartaNaTabli);
     }
 
     return(
-        <div className="w-full h-full bg-slate-500">
+        <div className="w-full h-full">
             <div className="h-[75%] bg-green-400 ">
               {
-                lvl1.map((lvl)=>(
-                    <KartaKomponenta key={lvl.id} id={lvl.id} value={lvl.value} shape={lvl.shape} className={lvl.className} hidden={lvl.hidden} disabled={lvl.disabled} handlePress={handlePress}/>
-                ))
+                lvl1.map((lvl)=>
+                    (
+                        <KartaKomponenta key={lvl.id} id={lvl.id} value={lvl.value} shape={lvl.shape} className={lvl.className} hidden={lvl.hidden} disabled={lvl.disabled} handlePress={handlePress}/>
+                    )    
+                )
               }       
             </div>
-            <Tabla karte={karteNaTabli}/>
+            <Tabla karte={karteNaTabli} handleKarteNaTabli={handleKarteNaTabli}/>
         </div>
     )
 }
