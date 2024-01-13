@@ -8,12 +8,16 @@ interface TablaProps{
     karte: Karta[];
     handleKarteNaTabli: (karta: Karta[])=>void;
     score: number;
+    comboKarta: Karta;
+    combo: number;
 }
 
 export const Tabla = ({
     karte,
     handleKarteNaTabli,
-    score
+    score,
+    comboKarta,
+    combo
 }:TablaProps) =>{
 
     const [ num, setNum ] = useState(1);
@@ -22,6 +26,10 @@ export const Tabla = ({
         karte.pop();
         setNum(num+1);
         handleKarteNaTabli(karte);
+    }
+
+    const handleCombo = () =>{
+
     }
 
 
@@ -37,8 +45,16 @@ export const Tabla = ({
                     ))
                   
                 }
+
+                {
+                    combo>3 && <KartaKomponenta key={1} id={-1} value={comboKarta.value} shape={comboKarta.shape} className="absolute left-[58%]" disabled={false} hidden={false} handlePress={handleCombo}/>
+                }
             <div className="absolute top-[93%] left-[10%] text-[20px] font-bold">
                 <h1>Score: {score}</h1>
+            </div>
+
+            <div className="absolute top-[93%] right-[10%] text-[20px] font-bold">
+                <h1>Combo: {combo-1}</h1>
             </div>
         </div>
     )

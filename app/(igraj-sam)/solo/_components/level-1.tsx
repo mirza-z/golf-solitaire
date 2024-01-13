@@ -20,6 +20,8 @@ export const Level1 = ({
     const [ trenutnaKartaNaTabli, setTrenutnaKartaNaTabli] = useState(karteNaTabli[karteNaTabli.length-1].value);
     const [ score, setScore ] = useState(0);
     const [ combo, setCombo ] = useState(1);
+    const [ comboKarta, setComboKarta ] = useState(karteNaTabli[karteNaTabli.length-2]);
+    const [ aktivanKombo, setAktivanKombo ] = useState(false);
 
     useEffect(() => {
       
@@ -29,20 +31,44 @@ export const Level1 = ({
 
     const handlePress = (id:number) =>{
         if((trenutnaKartaNaTabli+1 != updateLvl[id].value && trenutnaKartaNaTabli-1 != updateLvl[id].value) && 
-            !( trenutnaKartaNaTabli==1 && updateLvl[id].value==13) && !( trenutnaKartaNaTabli==13 && updateLvl[id].value==1))
-            
-            { return; }
+            !( trenutnaKartaNaTabli==1 && updateLvl[id].value==13) && !( trenutnaKartaNaTabli==13 && updateLvl[id].value==1)){ 
 
-        
-        const trenutniSpil = karteNaTabli;
-        trenutniSpil.pop();
-        const karta = { value: updateLvl[id].value, shape: updateLvl[id].shape};
-        trenutniSpil.push(karta);
-        setKarteNaTabli(trenutniSpil);
-        
-        setTrenutnaKartaNaTabli(karteNaTabli[karteNaTabli.length-1].value);
-        setScore(score + combo*4400);
-        setCombo(combo+1);
+                if(aktivanKombo && (comboKarta.value+1 != updateLvl[id].value && comboKarta.value-1 != updateLvl[id].value) && !(
+                    comboKarta.value==1 && updateLvl[id].value==13) && !( comboKarta.value==13 && updateLvl[id].value==1)
+                ){
+                    console.log(comboKarta.value+1 +" " + updateLvl[id].value);
+                    return;
+                }
+                else if(aktivanKombo){
+                    console.log(comboKarta.value +" " + updateLvl[id].value);
+                    setComboKarta(updateLvl[id]);
+                    setScore(score + combo*4400);
+                    setCombo(combo+1);
+                }
+                else{
+                    return;
+                }
+        }
+        else{
+            let trenutniSpil = karteNaTabli;
+            trenutniSpil.pop();
+            const karta = { value: updateLvl[id].value, shape: updateLvl[id].shape};
+            trenutniSpil.push(karta);
+            setKarteNaTabli(trenutniSpil);
+
+            
+            
+            setTrenutnaKartaNaTabli(karteNaTabli[karteNaTabli.length-1].value);
+            setScore(score + combo*4400);
+            setCombo(combo+1);
+            
+            if(combo==3){
+                trenutniSpil = [...trenutniSpil.slice(0, -2), ...trenutniSpil.slice(-1)];
+                setKarteNaTabli(trenutniSpil);
+                setAktivanKombo(true);
+                console.log(karteNaTabli)
+            }
+        }
 
         updateLvl[id].hidden = true;
         if(id===0){
@@ -167,7 +193,9 @@ export const Level1 = ({
     const handleKarteNaTabli = (trenutneKarte: Karta[]) =>{
         setKarteNaTabli(trenutneKarte);
         setCombo(1);
+        setAktivanKombo(false);
         setTrenutnaKartaNaTabli(karteNaTabli[karteNaTabli.length-1].value);
+        setComboKarta(karteNaTabli[karteNaTabli.length-2]);
     }
 
     return(
@@ -181,7 +209,7 @@ export const Level1 = ({
                 )
               }       
             </div>
-            <Tabla karte={karteNaTabli} handleKarteNaTabli={handleKarteNaTabli} score={score}/>
+            <Tabla karte={karteNaTabli} handleKarteNaTabli={handleKarteNaTabli} score={score} comboKarta={comboKarta} combo={combo}/>
         </div>
     )
 }
