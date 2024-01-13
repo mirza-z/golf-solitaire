@@ -50,7 +50,7 @@ const IgrajSam = () =>{
     ];
 
     return(
-        <div className="w-full h-full">
+        <div className="w-full h-full select-none">
             <Level1 updateLvl={updateLvl} spil={spil}/>
         </div>
     )
