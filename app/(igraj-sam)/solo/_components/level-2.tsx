@@ -195,7 +195,7 @@ export const Level2 = ({
 
     const handleKarteNaTabli = (trenutneKarte: Karta[]) =>{
         if(trenutneKarte.length == 0)
-            handleLevel
+            handleLevel();
         setKarteNaTabli(trenutneKarte);
         setCombo(1);
         setAktivanKombo(false);

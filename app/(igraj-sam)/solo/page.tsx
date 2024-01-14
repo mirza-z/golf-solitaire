@@ -10,11 +10,25 @@ const IgrajSam = () =>{
     const [ spil, setSpil ] = useState(Spil);
     const [ level, setLevel] = useState(1);
 
+    const ispartaj = () =>{
+        let currentIndex = spil.length, randomIndex;
+
+        while(currentIndex>0){
+            randomIndex = Math.floor(Math.random() * currentIndex );
+
+            currentIndex--;
+
+            [spil[currentIndex], spil[randomIndex]] = [ spil[randomIndex], spil[currentIndex]];
+        }
+    }
+
+    ispartaj();
+
     useEffect(() =>{
-        setSpil(Spil);
-    }, [spil]);
+    }, []);
 
     const handleLevel = () =>{
+        ispartaj();
         setLevel(level+1);
     }
 
