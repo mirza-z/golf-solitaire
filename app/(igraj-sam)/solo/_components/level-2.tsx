@@ -145,7 +145,7 @@ export const Level2 = ({
             }      
         }
         else if(id===18){
-            if(lvl2[6].hidden === true)
+            if(lvl2[7].hidden === true)
                 updateLvl[12].disabled = false;
             if(lvl2[7].hidden && lvl2[8].hidden){
                 updateLvl[13].disabled = false;
