@@ -96,6 +96,7 @@ const IgrajSam = () =>{
             <h2 className="absolute top-5 left-[20%]">ZA LVL 2 PRELISTAJ SVE KARTE</h2>
             { level==1 && <Level1 updateLvl={updateLvl} spil={spil} handleLevel={handleLevel}/> }
             { level==2 && <Level2 updateLvl={updateLvl2} spil={spil} handleLevel={handleLevel}/>}
+            { level>2 && <h1>Pravi se. Restartuj da ponovo igras</h1>}
         </div>
     )
 }
