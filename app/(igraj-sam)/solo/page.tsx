@@ -4,13 +4,19 @@ import Spil from "@/cardData"
 import { Level1 } from "./_components/level-1" 
 import { Level } from "@/types"
 import { useEffect, useState } from "react";
+import { Level2 } from "./_components/level-2";
 
 const IgrajSam = () =>{
     const [ spil, setSpil ] = useState(Spil);
+    const [ level, setLevel] = useState(1);
 
     useEffect(() =>{
         setSpil(Spil);
-    }, [spil])
+    }, [spil]);
+
+    const handleLevel = () =>{
+        setLevel(level+1);
+    }
 
     const karte=  spil.slice(0, 30);
 
@@ -49,9 +55,46 @@ const IgrajSam = () =>{
         { id: 29, value: karte[29].value, shape: karte[29].shape, className: "absolute top-[320px] left-[calc(76%+48px)] z-[10]", hidden: false, disabled: false},
     ];
 
+    const updateLvl2: Level[] = [
+        { id: 0, value: karte[0].value, shape: karte[0].shape, className: "absolute top-[155px] left-[calc(50%-52px)] z-[10]", hidden: false, disabled: false },
+        { id: 1, value: karte[1].value, shape: karte[1].shape, className: "absolute top-[155px] left-[calc(50%+4px)] z-[10]", hidden: false, disabled: false },
+
+        { id: 2, value: karte[2].value, shape: karte[2].shape, className: "absolute top-[165px] left-[calc(50%-24px)] z-[8]", hidden: false, disabled: true},
+
+        { id: 3, value: karte[3].value, shape: karte[3].shape, className: "absolute top-[190px] left-[calc(50%-100px)] z-[6]", hidden: false, disabled: true},
+        { id: 4, value: karte[4].value, shape: karte[4].shape, className: "absolute top-[190px] left-[calc(50%-48px)] z-[6]", hidden: false, disabled: true },
+        { id: 5, value: karte[5].value, shape: karte[5].shape, className: "absolute top-[190px] left-[calc(50%-0px)] z-[6]", hidden: false, disabled: true},
+        { id: 6, value: karte[6].value, shape: karte[6].shape, className: "absolute top-[190px] left-[calc(50%+52px)] z-[6]", hidden: false, disabled: true},
+
+        { id: 7, value: karte[7].value, shape: karte[7].shape, className: "absolute top-[225px] left-[calc(50%-124px)] z-[8]", hidden: false, disabled: false},
+        { id: 8, value: karte[8].value, shape: karte[8].shape, className: "absolute top-[225px] left-[calc(50%-76px)] z-[8]", hidden: false, disabled: false},
+        { id: 9, value: karte[9].value, shape: karte[9].shape, className: "absolute top-[225px] left-[calc(50%-24px)] z-[8]", hidden: false,  disabled: false},
+        { id: 10, value: karte[10].value, shape: karte[10].shape, className: "absolute top-[225px] left-[calc(50%+28px)] z-[8]", hidden:false, disabled: false},
+        { id: 11, value: karte[11].value, shape: karte[11].shape, className:"absolute top-[225px] left-[calc(50%+76px)] z-[8]", hidden: false, disabled: false},
+
+        { id: 12, value: karte[12].value, shape: karte[12].shape, className:"absolute top-[255px] left-[calc(50%-148px)] z-[6]", hidden: false, disabled: true},
+        { id: 13, value: karte[13].value, shape: karte[13].shape, className:"absolute top-[255px] left-[calc(50%-100px)] z-[6]", hidden: false, disabled: true},
+        { id: 14, value: karte[14].value, shape: karte[14].shape, className:"absolute top-[255px] left-[calc(50%-48px)] z-[6]", hidden: false, disabled: true},
+        { id: 15, value: karte[15].value, shape: karte[15].shape, className:"absolute top-[255px] left-[calc(50%+0px)] z-[6]", hidden: false, disabled: true},
+        { id: 16, value: karte[16].value, shape: karte[16].shape, className:"absolute top-[255px] left-[calc(50%+52px)] z-[6]", hidden: false, disabled: true},
+        { id: 17, value: karte[17].value, shape: karte[17].shape, className:"absolute top-[255px] left-[calc(50%+98px)] z-[6]", hidden: false, disabled: true},
+
+        { id: 18, value: karte[18].value, shape: karte[18].shape, className:"absolute top-[285px] left-[calc(50%-124px)] z-[6]", hidden: false, disabled: true},
+        { id: 19, value: karte[19].value, shape: karte[19].shape, className:"absolute top-[285px] left-[calc(50%-24px)] z-[6]", hidden: false, disabled: true},
+        { id: 20, value: karte[20].value, shape: karte[20].shape, className: "absolute top-[285px] left-[calc(50%+76px)] z-[6]", hidden: false, disabled: true},
+
+        { id: 21, value: karte[24].value, shape: karte[21].shape, className: "absolute top-[295px] left-[calc(50%-153px)] z-[8]", hidden: false, disabled: false},
+        { id: 22, value: karte[22].value, shape: karte[22].shape, className: "absolute top-[295px] left-[calc(50%-97px)] z-[8]", hidden: false, disabled: false},
+        { id: 23, value: karte[23].value, shape: karte[23].shape, className: "absolute top-[295px] left-[calc(50%-52px)] z-[8]", hidden: false, disabled: false},
+        { id: 24, value: karte[24].value, shape: karte[24].shape, className: "absolute top-[295px] left-[calc(50%+4px)] z-[8]", hidden: false, disabled: false},
+        { id: 25, value: karte[25].value, shape: karte[25].shape, className: "absolute top-[295px] left-[calc(50%+49px)] z-[8]", hidden: false, disabled: false},
+        { id: 26, value: karte[26].value, shape: karte[26].shape, className: "absolute top-[295px] left-[calc(50%+103px)] z-[8]", hidden: false, disabled: false},
+    ];
+
     return(
         <div className="w-full h-full select-none">
-            <Level1 updateLvl={updateLvl} spil={spil}/>
+            { level==1 && <Level1 updateLvl={updateLvl} spil={spil} handleLevel={handleLevel}/> }
+            { level==2 && <Level2 updateLvl={updateLvl2} spil={spil} handleLevel={handleLevel}/>}
         </div>
     )
 }

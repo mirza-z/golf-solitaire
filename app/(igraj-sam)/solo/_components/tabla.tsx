@@ -23,6 +23,9 @@ export const Tabla = ({
     const [ num, setNum ] = useState(1);
 
     const handlePress = (id:number) =>{
+        if(karte.length==0){
+            handleKarteNaTabli(karte);
+        }
         karte.pop();
         setNum(num+1);
         handleKarteNaTabli(karte);
