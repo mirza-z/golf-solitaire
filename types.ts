@@ -11,4 +11,5 @@ export type Level = {
     className: string,
     disabled: boolean,
     hidden: boolean,
+    zakljucana?: boolean,
 }
